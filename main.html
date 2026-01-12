@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nour Salloum - AI Engineer & Mobile Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0e27;
+            --bg-secondary: #151a3d;
+            --accent-blue: #4a9eff;
+            --accent-purple: #b794f6;
+            --accent-cyan: #00d4ff;
+            --text-primary: #e8eaf2;
+            --text-secondary: #9ca3c8;
+            --gradient-1: linear-gradient(135deg, #4a9eff 0%, #b794f6 100%);
+            --gradient-2: linear-gradient(135deg, #00d4ff 0%, #4a9eff 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Background Animation */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(74, 158, 255, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(183, 148, 246, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header / Navigation */
+        header {
+            padding: 2rem 0;
+            position: sticky;
+            top: 0;
+            background: rgba(10, 14, 39, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.8rem;
+            font-weight: 400;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-1);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 0 6rem;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-weight: 300;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .gradient-text {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease-out 0.6s backwards;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--gradient-1);
+            color: white;
+            box-shadow: 0 4px 20px rgba(74, 158, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(74, 158, 255, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--accent-blue);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(74, 158, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 0;
+        }
+
+        .section-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 4rem;
+            font-size: 1.1rem;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(74, 158, 255, 0.3);
+            box-shadow: 0 10px 40px rgba(74, 158, 255, 0.1);
+        }
+
+        .skill-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--accent-blue);
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            padding: 0.4rem 1rem;
+            background: rgba(74, 158, 255, 0.1);
+            border: 1px solid rgba(74, 158, 255, 0.2);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            gap: 3rem;
+        }
+
+        .project-card {
+            background: var(--bg-secondary);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(183, 148, 246, 0.3);
+            box-shadow: 0 10px 40px rgba(183, 148, 246, 0.1);
+        }
+
+        .project-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-family: 'DM Serif Display', serif;
+        }
+
+        .project-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .tech-tag {
+            padding: 0.5rem 1rem;
+            background: rgba(183, 148, 246, 0.1);
+            border: 1px solid rgba(183, 148, 246, 0.2);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--accent-purple);
+        }
+
+        /* Experience Section */
+        .experience-timeline {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            background: var(--bg-secondary);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border-left: 4px solid var(--accent-cyan);
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 10px 40px rgba(0, 212, 255, 0.1);
+        }
+
+        .timeline-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-meta {
+            color: var(--accent-cyan);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .timeline-item ul {
+            margin-left: 1.5rem;
+            color: var(--text-secondary);
+        }
+
+        .timeline-item li {
+            margin-bottom: 0.75rem;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--bg-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-blue);
+            background: rgba(74, 158, 255, 0.1);
+            box-shadow: 0 5px 20px rgba(74, 158, 255, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .hero {
+                padding: 4rem 0 3rem;
+            }
+
+            section {
+                padding: 4rem 0;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">NS</div>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1 class="hero-title">Hi, I'm <span class="gradient-text">Nour Salloum</span></h1>
+                <p class="hero-subtitle">AI Engineer & Mobile Application Developer</p>
+                <p class="hero-description">
+                    I build intelligent applications that bridge AI innovation with practical mobile solutions. 
+                    Specialized in LLMs, RAG systems, and cross-platform mobile development with Flutter and Java.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn btn-primary">View My Work</a>
+                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <p class="section-subtitle">Building the future, one intelligent application at a time</p>
+                <div style="max-width: 800px; margin: 0 auto; text-align: center; color: var(--text-secondary); font-size: 1.1rem; line-height: 1.9;">
+                    <p>
+                        I'm a Mobile Application Developer and AI Engineer with a passion for creating innovative solutions 
+                        that solve real-world problems. My journey spans from building intuitive mobile applications with 
+                        Flutter and Java to developing cutting-edge AI systems using LLMs, RAG architectures, and deep learning.
+                    </p>
+                    <br>
+                    <p>
+                        With hands-on experience in both mobile and AI development, I bring a unique perspective to building 
+                        intelligent applications that are not only powerful but also user-friendly and accessible.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <div class="container">
+                <h2 class="section-title">Skills & Technologies</h2>
+                <p class="section-subtitle">Tools and technologies I work with</p>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <h3>AI & Machine Learning</h3>
+                        <div class="skill-tags">
+                            <span class="tag">LangChain</span>
+                            <span class="tag">PyTorch</span>
+                            <span class="tag">Hugging Face</span>
+                            <span class="tag">Scikit-learn</span>
+                            <span class="tag">RAG</span>
+                            <span class="tag">LLMs</span>
+                            <span class="tag">Deep Learning</span>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Mobile Development</h3>
+                        <div class="skill-tags">
+                            <span class="tag">Flutter</span>
+                            <span class="tag">Dart</span>
+                            <span class="tag">Java</span>
+                            <span class="tag">Android SDK</span>
+                            <span class="tag">Firebase</span>
+                            <span class="tag">Firestore</span>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Backend & APIs</h3>
+                        <div class="skill-tags">
+                            <span class="tag">FastAPI</span>
+                            <span class="tag">ASP.NET</span>
+                            <span class="tag">RESTful APIs</span>
+                            <span class="tag">SQL Server</span>
+                            <span class="tag">PostgreSQL</span>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Languages & Tools</h3>
+                        <div class="skill-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">C#</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">Git</span>
+                            <span class="tag">Docker</span>
+                            <span class="tag">HTML/CSS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <div class="container">
+                <h2 class="section-title">Featured Projects</h2>
+                <p class="section-subtitle">Showcasing my recent work in AI and mobile development</p>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <h3>AI-Powered Calendar Assistant</h3>
+                        <p>
+                            Built an intelligent AI assistant to manage Google Calendar through natural language commands. 
+                            Users can create, update, and delete events, check availability, generate daily schedules, and 
+                            detect scheduling conflicts automatically.
+                        </p>
+                        <p>
+                            Implemented an agent-based system using LangChain and LangGraph with GPT-4o-mini. Developed a 
+                            FastAPI backend with clean service-based architecture, PostgreSQL for metadata persistence, and 
+                            secured access using OAuth2 and Google Calendar API.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">LangChain</span>
+                            <span class="tech-tag">LangGraph</span>
+                            <span class="tech-tag">FastAPI</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                            <span class="tech-tag">OAuth2</span>
+                            <span class="tech-tag">Docker</span>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <h3>News RAG-Powered Assistant</h3>
+                        <p>
+                            Developed an intelligent assistant using a Retrieval-Augmented Generation (RAG) architecture to 
+                            answer questions based on news articles with high accuracy and contextual relevance.
+                        </p>
+                        <p>
+                            Built with LangChain, Pinecone, and Hugging Face, integrating document embedding, semantic search, 
+                            and context-aware response generation with Mistral-7B. Implemented text preprocessing, vector 
+                            database indexing, and custom prompts to enhance retrieval accuracy.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">LangChain</span>
+                            <span class="tech-tag">Pinecone</span>
+                            <span class="tech-tag">Hugging Face</span>
+                            <span class="tech-tag">Mistral-7B</span>
+                            <span class="tech-tag">RAG</span>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <h3>Chest X-ray Pneumonia Classification</h3>
+                        <p>
+                            Designed and trained deep learning models to classify chest X-rays as Normal or Pneumonia with 
+                            high accuracy using custom CNN and MobileNetV2 transfer learning.
+                        </p>
+                        <p>
+                            Executed comprehensive data preprocessing, augmentation, and normalization to tackle class 
+                            imbalance. Evaluated model performance using accuracy, precision, recall, and confusion matrices 
+                            to ensure reliable medical diagnostics.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">TensorFlow</span>
+                            <span class="tech-tag">Keras</span>
+                            <span class="tech-tag">CNN</span>
+                            <span class="tech-tag">MobileNetV2</span>
+                            <span class="tech-tag">Deep Learning</span>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <h3>Lebanon Tourism Android App</h3>
+                        <p>
+                            Created an Android application showcasing tourism places in Lebanon, enabling users to manage 
+                            their own trips and share travel journals with the community.
+                        </p>
+                        <p>
+                            Developed using Android Studio in Java with Firestore Database and Firebase Authentication for 
+                            secure user data management. Implemented features for trip planning, location discovery, and 
+                            social sharing.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Java</span>
+                            <span class="tech-tag">Android Studio</span>
+                            <span class="tech-tag">Firebase</span>
+                            <span class="tech-tag">Firestore</span>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <h3>E-Commerce Flutter Application</h3>
+                        <p>
+                            Built a comprehensive Flutter-based e-commerce application for a dermo-cosmetic shop with a 
+                            .NET backend and SQL database during internship at Dynasoft Technology.
+                        </p>
+                        <p>
+                            Developed RESTful APIs and implemented secure authentication and data handling. Created an 
+                            intuitive UI/UX for seamless shopping experience across iOS and Android platforms.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Flutter</span>
+                            <span class="tech-tag">.NET</span>
+                            <span class="tech-tag">SQL Server</span>
+                            <span class="tech-tag">REST API</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience">
+            <div class="container">
+                <h2 class="section-title">Experience & Education</h2>
+                <p class="section-subtitle">My professional journey and learning path</p>
+                <div class="experience-timeline">
+                    <div class="timeline-item">
+                        <h3>Internship - Dynasoft Technology</h3>
+                        <p class="timeline-meta">June 2024 – December 2024</p>
+                        <ul>
+                            <li>Built a Flutter-based e-commerce app for a dermo-cosmetic shop with .NET backend and SQL database</li>
+                            <li>Developed RESTful APIs and implemented secure authentication and data handling</li>
+                            <li>Collaborated with a team to develop a robust point-of-sale desktop application using WPF</li>
+                            <li>Focused on user interface design, functionality, and cross-platform compatibility</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h3>Bachelor of Computer Science: Programming</h3>
+                        <p class="timeline-meta">University of Science and Art in Lebanon (USAL) • Spring 2024</p>
+                        <ul>
+                            <li>Specialized in Programming with focus on mobile and web development</li>
+                            <li>Relevant Coursework: Web Application Development, Android Application Development, 
+                                Object Oriented Programming, Data Structures and Algorithms</li>
+                            <li>Completed final year project: Android Tourism Application for Lebanon</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h3>The AI Engineering Program</h3>
+                        <p class="timeline-meta">with Lara Wehbe • Completed August 2024</p>
+                        <ul>
+                            <li>Gained hands-on experience in building AI-powered solutions using modern AI tools and frameworks</li>
+                            <li>Learned to work with LLMs, RAG architectures, and agent-based systems</li>
+                            <li>Built multiple AI projects including calendar assistants and RAG-powered applications</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h3>AI Career Accelerator</h3>
+                        <p class="timeline-meta">with Lara Wehbe • Ongoing</p>
+                        <ul>
+                            <li>Advanced AI training program continuing from the AI Engineering Program</li>
+                            <li>Deepening expertise in production-grade AI systems and deployment</li>
+                            <li>Working on real-world AI projects and applications</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="container">
+                <h2 class="section-title">Let's Connect</h2>
+                <p class="section-subtitle">I'm always open to new opportunities and collaborations</p>
+                <div class="contact-content">
+                    <p style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 2rem;">
+                        Whether you have a project in mind, want to discuss AI innovations, or just want to say hi, 
+                        feel free to reach out!
+                    </p>
+                    <div class="social-links">
+                        <a href="https://github.com/NourSalloum" target="_blank" rel="noopener noreferrer" class="social-link" title="GitHub">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                        </a>
+                        <a href="https://linkedin.com/in/noursalloum" target="_blank" rel="noopener noreferrer" class="social-link" title="LinkedIn">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                            </svg>
+                        </a>
+                        <a href="mailto:noursalloum789@gmail.com" class="social-link" title="Email">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Nour Salloum. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.skill-card, .project-card, .timeline-item').forEach(el => {
+            el.style.opacity = '0';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
